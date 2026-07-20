@@ -1,11 +1,17 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
-
 const PORT = 3000;
 
+// Home Page
 app.get("/", (req, res) => {
-    res.send("Welcome to Blog Management System!");
+    res.sendFile(path.join(__dirname, "views", "index.html"));
+});
+
+// Add Blog Page
+app.get("/add-blog", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "add-blog.html"));
 });
 
 app.listen(PORT, () => {
