@@ -2,16 +2,18 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-app.use(express.static("public"));
 const PORT = 3000;
 
-// Home Page
+// Serve CSS and JS from public folder
+app.use(express.static(path.join(__dirname, "public")));
+
+// Home page
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
-// Add Blog Page
-app.get("/add-blog", (req, res) => {
+// Add Blog page
+app.get("/add-blog.html", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "add-blog.html"));
 });
 
