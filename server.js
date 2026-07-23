@@ -6,7 +6,7 @@ const PORT = 3000;
 
 // Serve CSS and JS from public folder
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(express.urlencoded({ extended: true }));
 // Home page
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
@@ -15,6 +15,15 @@ app.get("/", (req, res) => {
 // Add Blog page
 app.get("/add-blog.html", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "add-blog.html"));
+});
+app.post("/add-blog", (req, res) => {
+    const { title, author, content } = req.body;
+
+    console.log("Title:", title);
+    console.log("Author:", author);
+    console.log("Content:", content);
+
+    res.send("Blog submitted successfully!");
 });
 
 app.listen(PORT, () => {
