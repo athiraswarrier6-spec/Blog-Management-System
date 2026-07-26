@@ -19,14 +19,21 @@ app.get("/", (req, res) => {
     blogs.forEach((blog, index) => {
         blogHTML += `
             <article style="border:1px solid #ccc;padding:15px;margin-bottom:15px;border-radius:8px;">
-                <h3>${blog.title}</h3>
-                <p><strong>Author:</strong> ${blog.author}</p>
-                <p>${blog.content}</p>
+    <h3>${blog.title}</h3>
+    <p><strong>Author:</strong> ${blog.author}</p>
+    <p>${blog.content}</p>
 
-                <a href="/edit-blog/${index}">
-                    <button>Edit Blog</button>
-                </a>
-            </article>
+    <a href="/edit-blog/${index}">
+        <button>Edit Blog</button>
+    </a>
+
+    <a href="/delete-blog/${index}">
+        <button style="background-color:red;color:white;">
+            Delete Blog
+        </button>
+    </a>
+
+</article>
         `;
     });
 
@@ -198,6 +205,20 @@ app.post("/update-blog/:id", (req, res) => {
         content: req.body.content
 
     };
+
+    console.log(blogs);
+
+    res.redirect("/");
+
+});
+// ================= DELETE BLOG =================
+app.get("/delete-blog/:id", (req, res) => {
+
+    const id = req.params.id;
+
+    if (blogs[id]) {
+        blogs.splice(id, 1);
+    }
 
     console.log(blogs);
 
