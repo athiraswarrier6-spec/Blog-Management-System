@@ -86,23 +86,10 @@ app.get("/", (req, res) => {
 });
 
 // ================= ADD BLOG PAGE =================
-app.post("/add-blog", (req, res) => {
-
-    const { title, author, content } = req.body;
-
-    blogs.push({
-        title,
-        author,
-        content
-    });
-
-    console.log(blogs);
-
-    res.status(200).json({
-        message: "Blog added successfully"
-    });
-
+app.get("/add-blog.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "add-blog.html"));
 });
+
 
 // ================= ADD BLOG =================
 app.post("/add-blog", (req, res) => {
