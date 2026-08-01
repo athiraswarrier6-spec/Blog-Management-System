@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
             <h1>Blog Management System</h1>
 
             <nav>
-                <a href="/">Home</a> |
+                <a href="/">Home</a> 
                 <a href="/add-blog.html">Add Blog</a>
             </nav>
 
