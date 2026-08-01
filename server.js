@@ -2,8 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 // Store blogs in an array
 const blogs = [];
 
@@ -87,9 +86,21 @@ app.get("/", (req, res) => {
 });
 
 // ================= ADD BLOG PAGE =================
-app.get("/add-blog.html", (req, res) => {
+app.post("/add-blog", (req, res) => {
 
-    res.sendFile(path.join(__dirname, "views", "add-blog.html"));
+    const { title, author, content } = req.body;
+
+    blogs.push({
+        title,
+        author,
+        content
+    });
+
+    console.log(blogs);
+
+    res.status(200).json({
+        message: "Blog added successfully"
+    });
 
 });
 
