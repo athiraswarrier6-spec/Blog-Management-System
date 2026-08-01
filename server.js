@@ -104,7 +104,9 @@ app.post("/add-blog", (req, res) => {
 
     console.log(blogs);
 
-    res.redirect("/");
+    res.status(200).json({
+        message: "Blog added successfully"
+    });
 
 });
 
